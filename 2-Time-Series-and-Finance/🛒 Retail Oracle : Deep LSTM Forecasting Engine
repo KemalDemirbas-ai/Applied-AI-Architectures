@@ -1,0 +1,76 @@
+import streamlit as st
+import pandas as pd
+import numpy as np
+from tensorflow.keras.models import load_model
+from datetime import datetime
+import os
+
+# 1. Sayfa Ayarları (Artık 'centered' daha iyi durur)
+st.set_page_config(page_title="Retail Oracle V3", layout="centered")
+
+# 2. Görsel Stil (Dark Theme)
+st.markdown("""
+    <style>
+    .main { background-color: #0d1525; color: white; }
+    .stButton>button { background-color: #00ffcc; color: #0d1525; font-weight: bold; width: 100%; border-radius: 10px; height: 3.5em; }
+    </style>
+    """, unsafe_allow_html=True)
+
+st.title("🛒 Retail Oracle: Sequential Stack")
+st.write("Professional Sales Forecasting Engine - Vertical Deployment")
+
+# 3. Model Yükleme
+BASE_PATH = os.path.dirname(__file__)
+MODEL_NAME = 'store_sales_lstm_v2.h5'
+MODEL_PATH = os.path.join(BASE_PATH, MODEL_NAME)
+
+@st.cache_resource
+def load_prediction_model():
+    if not os.path.exists(MODEL_PATH):
+        st.error(f"Model dosyası bulunamadı: {MODEL_NAME}")
+        return None
+    return load_model(MODEL_PATH, compile=False)
+
+model = load_prediction_model()
+
+# 4. GİRİŞ ALANLARI (ALT ALTA DÜZEN)
+# Kolonları sildik, artık her şey sırayla gelecek
+st.divider()
+date = st.date_input("📅 Select Forecast Date", datetime.now())
+
+family_list = ['AUTOMOTIVE', 'BABY CARE', 'BEAUTY', 'BEVERAGES', 'BOOKS', 'CELEBRATION', 'CLEANING', 'DAIRY', 'DELI', 'EGGS', 'FROZEN FOODS', 'GROCERY I', 'GROCERY II', 'HARDWARE', 'HOME AND KITCHEN I', 'HOME AND KITCHEN II', 'HOME APPLIANCES', 'HOME CARE', 'LADIESWEAR', 'LAWN AND GARDEN', 'LINGERIE', 'LIQUOR,WINE,BEER', 'MAGAZINES', 'MEATS', 'PERSONAL CARE', 'PET SUPPLIES', 'PLAYERS AND ELECTRONICS', 'POULTRY', 'PREPARED FOODS', 'PRODUCE', 'SCHOOL AND OFFICE SUPPLIES', 'SEAFOOD']
+family = st.selectbox("📦 Product Family", family_list)
+
+store_nbr = st.number_input("🏪 Store Number (1-54)", min_value=1, max_value=54, value=1)
+
+onpromotion = st.radio("🔥 Is the item on promotion?", [0, 1], horizontal=True)
+st.divider()
+
+# 5. Preprocessing & Prediction (90 Feature + Normalization)
+def get_prediction(date, store_nbr, family, onpromotion):
+    dummy_input = np.zeros((1, 90)) 
+    dummy_input[0, 0] = onpromotion
+    dummy_input[0, 1] = (date.year - 2013) / 4.0
+    dummy_input[0, 2] = date.month / 12.0
+    dummy_input[0, 3] = date.day / 31.0
+    dummy_input[0, 4] = date.weekday() / 6.0
+    
+    try:
+        family_idx = (family_list.index(family) % 85) + 5
+        dummy_input[0, family_idx] = 1
+    except: pass
+
+    log_pred = model.predict(dummy_input.reshape(1, 1, 90), verbose=0)
+    # INF hatasını engellemek için Clipping
+    safe_log_pred = np.clip(log_pred[0][0], 0, 10)
+    return np.expm1(safe_log_pred)
+
+# 6. Tahmin Butonu
+if st.button("🚀 EXECUTE PREDICTION"):
+    if model:
+        with st.spinner('Neural engine computing...'):
+            sales = get_prediction(date, store_nbr, family, onpromotion)
+            
+            # Sonuç Kutusu
+            st.success(f"### Estimated Unit Sales: {round(float(sales), 2)}")
+            st.info("Status: Vertical UI deployed and Neural Engine stabilized.")
