@@ -73,3 +73,6 @@ epochs = 5
 Epoch	Training Loss (MSE)	Validation Loss (MSE)
 1	3.1261	1.0146
 2	0.3749	1.3622
+👉 **[CLICK HERE FOR LIVE PREDICTION SYSTEM](https://huggingface.co/spaces/Ironside35/store-sales-forecasting-ai)**
+
+---
