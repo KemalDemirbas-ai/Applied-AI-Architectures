@@ -52,3 +52,8 @@ Phase,ROC-AUC Score,Status
 Baseline,0.8122,Initial Training
 Hyperparameter Tuning,0.8944,Feature Optimization
 Final Production Model,0.9303,Deployment Ready
+
+👉 **[CLICK HERE FOR LIVE PREDICTION SYSTEM](https://huggingface.co/spaces/Ironside35/financial-anomaly-engine)**
+
+---
+
