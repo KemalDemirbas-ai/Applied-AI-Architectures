@@ -28,11 +28,3 @@ Cassava is a critical food security crop. This project leverages **Transfer Lear
 
 ---
 
-## 🛠️ Installation & Local Usage
-
-To run this "Digital Agronomist" on your local machine:
-
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/KULLANICI_ADIN/PROJE_ADIN.git](https://github.com/KULLANICI_ADIN/PROJE_ADIN.git)
-   cd PROJE_ADIN
