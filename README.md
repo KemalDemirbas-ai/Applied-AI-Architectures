@@ -48,7 +48,7 @@ Evaluation Metrics (Accuracy, R2, RMSE) & Deployment Readiness
 
 8. RSNA Pneumonia Detection - Object Detection (YOLO) in Medical Imaging. 
 
-9. Deepfake Detection Challenge - Catching Video/Image Manipulation with Keras. 
+9.Project #09 (Pivot): Autonomous Object Recognition System
 
 10. HubMap: Hacking Human Vasculature - Image Segmentation (U-Net Architecture). 
 
