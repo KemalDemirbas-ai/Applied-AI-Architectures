@@ -2,7 +2,7 @@
 # 🫁 PneumoVision AI: Deep Learning Chest X-Ray Analysis
 **A Production-Ready Medical AI System for Pneumonia Detection**
 
-[![Hugging Face Space](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-yellow)](BURAYA_HUGGINGFACE_LINKINI_YAPISTIR)
+[![Hugging Face Space](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-yellow)](https://huggingface.co/spaces/Ironside35/PneumoVision-AI)
 [![Docker](https://img.shields.io/badge/Docker-Enabled-blue)](https://www.docker.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
