@@ -37,10 +37,4 @@ Experience the AI in action directly in your browser:
 
 ---
 
-## 📂 Repository Structure
-```text
-├── app.py                # Streamlit UI & Inference Logic
-├── Dockerfile            # Container Configuration
-├── requirements.txt      # Python Dependencies
-├── rsna_heavyweight_model.h5  # Pre-trained CNN Model (35MB)
-└── README.md             # Project Documentation
+
