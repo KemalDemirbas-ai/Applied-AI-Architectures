@@ -37,7 +37,5 @@ The system is packaged in the modern, fail-safe `.keras` format to prevent legac
 
 To run this AI factory on your local machine:
 ```bash
-git clone [https://huggingface.co/spaces/Ironside35/AI-Moderation-Engine](https://huggingface.co/spaces/Ironside35/AI-Moderation-Engine)
-cd YOUR_SPACE_NAME
-pip install -r requirements.txt
-streamlit run app.py
+git clone [https://huggingface.co/spaces/Ironside35/AI-Moderation-Engine]
+
