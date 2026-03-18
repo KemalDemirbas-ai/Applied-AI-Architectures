@@ -37,7 +37,7 @@ Evaluation Metrics (Accuracy, R2, RMSE) & Deployment Readiness
 
 5. IEEE-CIS Fraud Detection - Catching Fraud in Imbalanced Datasets. 
 
-17. Jane Street Market Prediction - High-Frequency Finance and MLOps. 
+17. American Express Default Prediction - Quantitative Finance and Risk MLOps.
 
 19. Optiver - Realized Volatility Prediction - Modeling Complex Market Dynamics. 
 
